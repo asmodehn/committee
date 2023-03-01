@@ -11,12 +11,8 @@ jobs:
     strategy:
       matrix:
         otp: ['23', '24', '25']
-        elixir: ['1.11', '1.12','1.13', '1.14']
+        elixir: ['1.12','1.13', '1.14']
         exclude:
-          - elixir: "1.11"
-            otp: "24"
-          - elixir: "1.11"
-            otp: "25"
           - elixir: "1.12"
             otp: "25"
 
