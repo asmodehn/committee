@@ -39,7 +39,7 @@ defmodule Committee.HelpersTest do
         System.cmd("git", ["init"])
         System.cmd("git", ["commit", "--allow-empty", "-m", "'Initial commit'"])
 
-        assert Helpers.branch_name() == "master"
+        assert Helpers.branch_name() == "main"
 
         System.cmd("git", ["checkout", "-qb", "my-cool-branch"])
 
