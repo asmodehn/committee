@@ -1,23 +1,30 @@
 name: CI
-on: [pull_request, push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 jobs:
   mix_test:
-    name: mix test (Elixir ${{ matrix.elixir }} OTP ${{ matrix.otp }})
+    runs-on: ubuntu-latest
+    name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
     strategy:
       matrix:
-        elixir: ["1.7.4", "1.9.1"]
-        include:
-          - elixir: "1.7.4"
-            otp: "20.3.8.23"
-          - elixir: "1.9.1"
-            otp: "22.x"
-    runs-on: ubuntu-16.04
+        otp: ['23', '24', '25']
+        elixir: ['1.11', '1.12','1.13', '1.14']
+        exclude:
+          - elixir: "1.11"
+            otp: "24"
+          - elixir: "1.11"
+            otp: "25"
+          - elixir: "1.12"
+            otp: "25"
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-elixir@v1.0.0
+      - uses: actions/checkout@v3
+      - uses: erlef/setup-beam@v1
         with:
-          otp-version: ${{ matrix.otp }}
-          elixir-version: ${{ matrix.elixir }}
+          otp-version: ${{matrix.otp}}
+          elixir-version: ${{matrix.elixir}}
       - name: Configure git with fake data
         run: |
           git config --global user.email "you@example.com"
