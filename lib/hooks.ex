@@ -32,18 +32,14 @@ defmodule Committee.Hooks do
           :ok = File.rename(file, "#{file}.old")
 
           Mix.shell().info(
-            "Existing #{hook} version is outdated (#{hook_version(content)}), but current version is #{
-              Committee.__version__()
-            }. Updating hook.."
+            "Existing #{hook} version is outdated (#{hook_version(content)}), but current version is #{Committee.__version__()}. Updating hook.."
           )
 
           create_hook(file, hook)
 
         true ->
           Mix.shell().info(
-            "Existing #{hook} version (#{hook_version(content)}) is up to date (#{
-              Committee.__version__()
-            }). Skipping update.."
+            "Existing #{hook} version (#{hook_version(content)}) is up to date (#{Committee.__version__()}). Skipping update.."
           )
       end
     else

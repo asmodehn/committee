@@ -66,9 +66,7 @@ defmodule CommitteeTest do
         current_version = Committee.__version__()
 
         message =
-          "Existing pre_commit version is outdated (old), but current version is #{
-            current_version
-          }. Updating hook.."
+          "Existing pre_commit version is outdated (old), but current version is #{current_version}. Updating hook.."
 
         assert_received {:mix_shell, :info, [^message]}
 
