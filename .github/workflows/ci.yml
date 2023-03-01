@@ -31,8 +31,9 @@ jobs:
           otp-version: ${{matrix.otp}}
           elixir-version: ${{matrix.elixir}}
       
-      - name: Configure git with fake data
+      - name: Configure git with default branch and fake data
         run: |
+          git config --global init.defaultBranch main
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
 
